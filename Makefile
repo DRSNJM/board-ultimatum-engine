@@ -3,17 +3,15 @@ DOCS_BRANCH=gh-pages
 SEPARATOR="============================================================================"
 
 # Generate documentation using marginalia
-docs:
-	@echo
+marg:
 	@echo ${SEPARATOR}
 	@echo "Using marginalia to create documentation. . ."
 	@echo ${SEPARATOR}
-	@-mkdir docs/
+	@-mkdir -p docs/
 	lein marg -d docs/ -f index.html
 
 # Copy generated docs into gh-pages branch
-prepare_docs: docs
-	@echo
+prepare_docs: marg
 	@echo ${SEPARATOR}
 	@echo "Preparing marginalia docs in gh-pages branch. . ."
 	@echo ${SEPARATOR}
@@ -22,10 +20,10 @@ prepare_docs: docs
 	cp .git/_deploy/* .
 	-git commit -am "Updating documentation."
 	@git checkout master > /dev/null
+	@echo
 
 # Deploy prepared documents
 deploy_docs: prepare_docs
-	@echo
 	@echo ${SEPARATOR}
 	@echo "Attempting deployment to origin's ${DOCS_BRANCH} branch."
 	@echo ${SEPARATOR}
