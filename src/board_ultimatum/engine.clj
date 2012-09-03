@@ -1,4 +1,4 @@
-(ns board-ultimatum.core)
+(ns board-ultimatum.engine)
 
 (defn foo
   "I don't do a whole lot."

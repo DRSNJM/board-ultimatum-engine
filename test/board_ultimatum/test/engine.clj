@@ -1,6 +1,6 @@
-(ns board-ultimatum.test.core
+(ns board-ultimatum.test.engine
   (:use clojure.test
-        board-ultimatum.core))
+        board-ultimatum.engine))
 
 (deftest a-test
   (testing "FIXME, I fail."
