@@ -15,6 +15,8 @@ prepare_docs: marg
 	@echo ${SEPARATOR}
 	@echo "Preparing marginalia docs in gh-pages branch. . ."
 	@echo ${SEPARATOR}
+	@-mkdir -p .git/_deploy/
+	rm -rf .git/_deploy/*
 	cp docs/* .git/_deploy/
 	git checkout gh-pages
 	cp .git/_deploy/* .
@@ -43,4 +45,4 @@ init_docs:
 	@echo
 	@echo -e "\tAttempting an initial commit. . ."
 	@echo
-	git commit -am "Initial commit."
+	git commit -m "Initial commit."
