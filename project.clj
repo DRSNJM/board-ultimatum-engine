@@ -6,5 +6,5 @@
   :scm {:name "git"
         :tag "163f4843fb344971d9828400ea62ae5e317cd168"
         :url "git://github.com/DRSNJM/board-ultimatum-engine.git"}
-  :dependencies [[org.clojure/clojure "1.4.0"]
+  :dependencies [[org.clojure/clojure "1.3.0"]
                  [com.leadtune/clj-ml "0.2.1"]])
