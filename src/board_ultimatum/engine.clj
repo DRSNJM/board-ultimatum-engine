@@ -11,7 +11,9 @@
 
 (facts num-players [['Checkers 2]
                     ['Chess 2]
-                    ['Solitaire 1]])
+                    ['Solitaire 1]
+                    ['Sorry 4]
+                    ['Nothing 0]])
 
 (defn query []
     (run* [q]
@@ -20,3 +22,10 @@
 (defn query2 []
     (run* [q]
         (num-players q 2)))
+
+(defn query3 [value tolerance]
+    (run* [q]
+      (fresh [n]
+        (conde [(membero n (range (- value tolerance) (+ value tolerance 1)))])
+        (num-players q n))))
+
