@@ -2,7 +2,8 @@
   (:require [monger.core :as mg]
             [monger.collection :as mc]
             [monger.query :as mq])
-  (:use monger.operators))
+  (:use monger.operators
+        [board-ultimatum.engine.config :only [storage]]))
 
 ;; This namespace contains all functions related to manipulating the
 ;; applications "model" (which is mostly mongo).
@@ -15,17 +16,18 @@
 
 (defn connect
   "Connect to mongo based on the given connection information."
-  [connection-info]
-  (if (:uri connection-info)
-    (mg/connect-via-uri! (:uri connection-info))
-    (let [db-name (:db-name connection-info)]
-      (mg/connect!)
-      (mg/authenticate db-name
-                       (:username connection-info)
-                       (into-array Character/TYPE (:password connection-info)))
-      (mg/set-db! (mg/get-db db-name))))
-  ; Set up the indexes necessary for decent performance.
-  (ensure-indexes))
+  ([connection-info]
+   (if (:uri connection-info)
+     (mg/connect-via-uri! (:uri connection-info))
+     (let [db-name (:db-name connection-info)]
+       (mg/connect!)
+       (mg/authenticate db-name
+                        (:username connection-info)
+                        (into-array Character/TYPE (:password connection-info)))
+       (mg/set-db! (mg/get-db db-name))))
+   ; Set up the indexes necessary for decent performance.
+   (ensure-indexes))
+  ([] (connect storage)))
 
 (defn add-games
   "Batch inserts the given sequence of games into mongo."
