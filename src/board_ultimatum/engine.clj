@@ -15,17 +15,31 @@
                     ['Sorry 4]
                     ['Nothing 0]])
 
+(defrel property* game p)
+
+(facts property* [['Solitaire 'has-cards]
+                  ['Sorry 'has-dice]
+                  ['Nothing 'has-everything]])
+
 (defn query []
+    "Returns the number of players of Checkers"
     (run* [q]
         (num-players 'Checkers q)))
 
 (defn query2 []
+    "Returns all games with 2 players"
     (run* [q]
         (num-players q 2)))
 
 (defn query3 [value tolerance]
+    "Returns all games with 'value' players with +/- 'tolerance'"
     (run* [q]
       (fresh [n]
         (conde [(membero n (range (- value tolerance) (+ value tolerance 1)))])
         (num-players q n))))
+
+(defn query4 []
+    "Returns all games with the property 'has-dice'"
+    (run* [q]
+        (property* q 'has-dice)))
 
