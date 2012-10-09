@@ -1,8 +1,12 @@
 (ns board-ultimatum.engine.model
   (:require [monger.core :as mg]
             [monger.collection :as mc]
-            [monger.query :as mq])
+            [monger.query :as mq]
+            [clojure.java.io :as io]
+            [clojure.zip :as zip]
+            [clojure.xml :as xml])
   (:use monger.operators
+        clojure.data.zip.xml
         [board-ultimatum.engine.config :only [storage]]))
 
 ;; This namespace contains all functions related to manipulating the
@@ -36,5 +40,7 @@
 
 (defn load-game
   "Takes a path to a BGG game XML file and returns a map describing the game."
-  [xml-file-path]
-  {})
+  [xml-resource-path]
+  (if-let [cres (io/resource xml-resource-path)]
+    (let [zgame (-> cres (.getPath) (xml/parse) (zip/xml-zip))]
+      zgame)))
