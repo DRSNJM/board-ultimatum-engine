@@ -1,3 +1,5 @@
+(comment 
+
 (ns board-ultimatum.engine
     (:refer-clojure :exclude [==])
     (:use [clojure.core.logic]))
@@ -60,3 +62,4 @@
         (num-players q 4)
         (property* q 'has-dice)
         (category q 'chance)))
+)

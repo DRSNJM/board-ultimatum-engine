@@ -1,3 +1,5 @@
+(comment 
+
 (ns board-ultimatum.test.engine
   (:use clojure.test
         board-ultimatum.engine))
@@ -30,3 +32,5 @@
     (testing "Get all games with 4 players that have dice and are 
               also are in the category 'chance' games"
         (println first(query5))))
+
+)
