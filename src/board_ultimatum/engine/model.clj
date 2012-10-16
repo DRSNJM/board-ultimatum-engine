@@ -37,10 +37,3 @@
   "Batch inserts the given sequence of games into mongo."
   [games]
   (mc/insert-batch "games" games))
-
-(defn load-game
-  "Takes a path to a BGG game XML file and returns a map describing the game."
-  [xml-resource-path]
-  (if-let [cres (io/resource xml-resource-path)]
-    (let [zgame (-> cres (.getPath) (xml/parse) (zip/xml-zip))]
-      zgame)))
