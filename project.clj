@@ -8,4 +8,6 @@
         :url "git://github.com/DRSNJM/board-ultimatum-engine.git"}
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [org.encog/encog-core "3.1.0"]
-                 [enclog "0.5.8-SNAPSHOT"]])
+                 [enclog "0.5.8-SNAPSHOT"]
+                 [org.clojure/core.logic "0.7.5"]
+                 [com.novemberain/monger "1.1.2"]])
